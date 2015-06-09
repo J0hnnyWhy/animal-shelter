@@ -37,4 +37,13 @@ class Cat
     define_method(:==) do |another_cat|
     self.name().==(another_cat.name()).&(self.id().==(another_cat.id()))
   end
+
+  define_method(:edit) do |attributes|
+    # @id = self.id
+    # @name = attributes.fetch(:name)
+    # @age = attributes.fetch(:age)
+    # @gender = attributes.fetch(:gender)
+    # @color = attributes.fetch(:color)
+    DB.exec("UPDATE cats SET (name, age, gender, color) VALUES ('#{@name}', #{@age}, '#{@gender}', '#{@color}') WHERE id = #{@id};")
+  end
 end
